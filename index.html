@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title> ¡Arriba el equipo de ventas! </title>
+  <title>¡Arriba el equipo de ventas!</title>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -228,7 +228,6 @@
 
     .hidden{ display:none !important; }
 
-    /* Small screens */
     @media (max-width:560px){
       .options{ grid-template-columns: 1fr; }
       .logo{ width: 120px; }
@@ -246,46 +245,33 @@
 
       <div class="header">
         <img class="logo" src="https://cdn.shopify.com/s/files/1/0602/9348/0563/files/logo_blanco_web.png?v=1758567562" alt="Galga" />
-        <span class="pill">Encuesta anónima (si tú decides)</span>
+        <span class="pill">Tu voz suma — gracias por participar</span>
         <div class="title">¡Arriba el equipo de ventas!</div>
       </div>
 
       <div class="progress"><div class="bar" id="bar"></div></div>
 
       <div class="body">
-        <!-- STEP 0: Intro / Identidad -->
+        <!-- STEP 0: Intro -->
         <section class="step active" data-step="0">
-          <h2>Queremos escucharte</h2>
-          <p class="lead">Este espacio es tuyo. queremos saber qué te motiva, qué te frustra y qué podríamos hacer mejor como equipo.</p>
+          <h2>¡hola!</h2>
+          <p class="lead">Este espacio es para escucharte y ayudarte. No es para evaluarte ni para afectar a nadie. Comparte con confianza: lo usaremos para ajustar cosas y cuidar mejor al equipo.</p>
 
           <div class="q">
-            <label class="prompt">¿Quieres responder de forma anónima?</label>
-            <div class="options">
-              <label class="chip"><input type="radio" name="anonimo" value="Sí" required><span>🙈 Sí, anónimo</span></label>
-              <label class="chip"><input type="radio" name="anonimo" value="No"><span>👤 No, puedo dejar mis datos</span></label>
-            </div>
+            <label class="prompt">Para ti, ¿qué te gustaría que esta encuesta te ayudara a mejorar o resolver?</label>
+            <textarea name="objetivo_personal" class="required" minlength="5" placeholder="Escribe con tus palabras…" required></textarea>
           </div>
 
-          <div class="q ident">
-            <label class="prompt">Tu nombre (opcional)</label>
-            <input type="text" name="nombre" placeholder="Escribe tu nombre o déjalo vacío">
-          </div>
-
-          <div class="q ident">
-            <label class="prompt">Sucursal / Zona (opcional)</label>
-            <input type="text" name="sucursal" placeholder="Ej. León, CDMX, Monterrey, Online">
-          </div>
-
-          <p class="tiny">Tus respuestas llegarán directo a la dirección interna de Galga para seguimiento</p>
+          <p class="tiny">Tus respuestas llegan directo al equipo interno de Galga y se revisan con respeto y discreción.</p>
         </section>
 
         <!-- STEP 1 -->
         <section class="step" data-step="1">
           <h2>Empecemos</h2>
-          <p class="lead">Primero que todo, gracias por tomarte el tiempo de tomar el cuestionario. ¿Qué te parece si empezamos con que nos cuentes algo que <b>te haya salido bien</b> últimamente.</p>
+          <p class="lead">Gracias por tomarte el tiempo. Arranquemos con algo que <b>sí te salió bien</b> últimamente.</p>
           <div class="q">
             <label class="prompt">¿Qué hiciste en el trabajo que te dejó buen sabor de boca?</label>
-            <textarea name="logro_reciente" placeholder="Una conversación, un seguimiento, una idea, un detalle con un cliente…"></textarea>
+            <textarea name="logro_reciente" class="required" minlength="5" placeholder="Una conversación, un seguimiento, una idea, un detalle con un cliente…" required></textarea>
           </div>
         </section>
 
@@ -295,11 +281,11 @@
           <p class="lead">Todos tenemos momentos que drenan. Queremos entender los tuyos.</p>
           <div class="q">
             <label class="prompt">¿Qué te ha estado <b>drenando energía</b> últimamente?</label>
-            <textarea name="drenadores" placeholder="Describe situaciones o patrones. Sé tan concreto como quieras."></textarea>
+            <textarea name="drenadores" class="required" minlength="5" placeholder="Describe situaciones o patrones. Sé tan concreto como quieras." required></textarea>
           </div>
           <div class="q">
             <label class="prompt">Cuéntanos una situación que te pesó recientemente. ¿Qué pasó y qué necesitabas en ese momento?</label>
-            <textarea name="situacion_peso" placeholder="Aquí caben desde procesos, tiempos, personas, hasta expectativas…"></textarea>
+            <textarea name="situacion_peso" minlength="5" placeholder="Procesos, tiempos, personas, expectativas…"></textarea>
           </div>
         </section>
 
@@ -309,25 +295,25 @@
           <p class="lead">Pedir apoyo no es debilidad; poner límites tampoco.</p>
           <div class="q">
             <label class="prompt">¿De quién necesitas más apoyo (rol o área) y en qué momentos?</label>
-            <textarea name="apoyos_necesarios" placeholder="Ej. durante entregas, en cotizaciones urgentes, al escalar temas, etc."></textarea>
+            <textarea name="apoyos_necesarios" class="required" minlength="5" placeholder="Ej. durante entregas, en cotizaciones urgentes, al escalar temas…" required></textarea>
           </div>
           <div class="q">
             <label class="prompt">¿Qué límite o acuerdo te ayudaría a proteger tu energía en el día a día?</label>
-            <textarea name="limites_sanos" placeholder="Reuniones, horarios, tiempos de respuesta, foco, claridad de prioridades…"></textarea>
+            <textarea name="limites_sanos" minlength="5" placeholder="Reuniones, horarios, tiempos de respuesta, foco, prioridades…"></textarea>
           </div>
         </section>
 
         <!-- STEP 4 -->
         <section class="step" data-step="4">
           <h2>Micro-mejoras con gran impacto</h2>
-          <p class="lead">No hablamos de “soluciones mágicas”, sino de ajustes que sí están a nuestro alcance.</p>
+          <p class="lead">No hablamos de soluciones mágicas; sí de ajustes alcanzables.</p>
           <div class="q">
             <label class="prompt">Si mañana pudiéramos cambiar <b>una mini-regla</b> o <b>un hábito</b>, ¿cuál sería?</label>
-            <textarea name="mini_regla" placeholder="Algo pequeño que haría tu jornada 10% más ligera."></textarea>
+            <textarea name="mini_regla" class="required" minlength="5" placeholder="Algo pequeño que haga tu jornada 10% más ligera." required></textarea>
           </div>
           <div class="q">
             <label class="prompt">¿Qué te daría <b>un 10% más de ánimo</b> para empezar el día?</label>
-            <textarea name="anio_10" placeholder="Rituales de arranque, comunicación, herramientas, reconocimientos…"></textarea>
+            <textarea name="anio_10" minlength="5" placeholder="Rituales de arranque, comunicación, herramientas, reconocimientos…"></textarea>
           </div>
         </section>
 
@@ -340,15 +326,15 @@
             <div class="options">
               <label class="chip"><input type="checkbox" name="reconocimiento_pref[]" value="Privado"><span>🤫 Privado</span></label>
               <label class="chip"><input type="checkbox" name="reconocimiento_pref[]" value="En equipo"><span>👥 En equipo</span></label>
-              <label class="chip"><input type="checkbox" name="reconocimiento_pref[]" value="Con mensajes escritos"><span>✍️ Mensajes escritos</span></label>
-              <label class="chip"><input type="checkbox" name="reconocimiento_pref[]" value="Con tiempo libre simbólico"><span>⏱️ Tiempo simbólico</span></label>
-              <label class="chip"><input type="checkbox" name="reconocimiento_pref[]" value="Con oportunidades de crecimiento"><span>📈 Oportunidades</span></label>
+              <label class="chip"><input type="checkbox" name="reconocimiento_pref[]" value="Mensajes escritos"><span>✍️ Mensajes escritos</span></label>
+              <label class="chip"><input type="checkbox" name="reconocimiento_pref[]" value="Tiempo simbólico"><span>⏱️ Tiempo simbólico</span></label>
+              <label class="chip"><input type="checkbox" name="reconocimiento_pref[]" value="Oportunidades de crecimiento"><span>📈 Oportunidades</span></label>
               <label class="chip"><input type="checkbox" name="reconocimiento_pref[]" value="Otro"><span>✨ Otro</span></label>
             </div>
           </div>
           <div class="q">
             <label class="prompt">Cuando haces bien tu trabajo, ¿qué parte del proceso te da esa sensación de “valió la pena”?</label>
-            <textarea name="sentido_proposito" placeholder="Describe el momento: una respuesta, un avance, un cliente bien atendido, un aprendizaje…"></textarea>
+            <textarea name="sentido_proposito" class="required" minlength="5" placeholder="Ese momento: una respuesta, un avance, un cliente bien atendido, un aprendizaje…" required></textarea>
           </div>
         </section>
 
@@ -358,11 +344,11 @@
           <p class="lead">Queremos claridad para poder acompañarte mejor.</p>
           <div class="q">
             <label class="prompt">¿Sientes presiones o exigencias de alguna persona o área en particular? ¿Cómo se manifiestan?</label>
-            <textarea name="presiones" placeholder="Describe situaciones, no ataques personales. Lo usaremos para poner orden y acuerdos."></textarea>
+            <textarea name="presiones" class="required" minlength="5" placeholder="Describe situaciones (no ataques personales). Lo usaremos para poner orden y acuerdos." required></textarea>
           </div>
           <div class="q">
             <label class="prompt">¿Qué crees que se está esperando de ti hoy que no está claro todavía?</label>
-            <textarea name="expectativas_no_claras" placeholder="Metas borrosas, prioridades encontradas, reglas no escritas…"></textarea>
+            <textarea name="expectativas_no_claras" minlength="5" placeholder="Metas borrosas, prioridades encontradas, reglas no escritas…"></textarea>
           </div>
         </section>
 
@@ -372,35 +358,23 @@
           <p class="lead">Hay cosas que quizá nadie ha preguntado. Este es el espacio.</p>
           <div class="q">
             <label class="prompt">¿Qué propuesta traerías a la mesa si supieras que será escuchada con seriedad?</label>
-            <textarea name="propuesta_valiente" placeholder="Proceso, comunicación, rituales, herramientas, coordinación entre áreas…"></textarea>
+            <textarea name="propuesta_valiente" class="required" minlength="5" placeholder="Proceso, comunicación, rituales, herramientas, coordinación entre áreas…" required></textarea>
           </div>
           <div class="q">
             <label class="prompt">¿Hay algo que quieras decir y que no haya salido en las preguntas anteriores?</label>
-            <textarea name="catarsis_libre" placeholder="Lo que necesites expresar. Aquí va."></textarea>
+            <textarea name="catarsis_libre" minlength="5" placeholder="Lo que necesites expresar. Aquí va."></textarea>
           </div>
         </section>
 
         <!-- STEP 8: Cierre -->
         <section class="step" data-step="8">
           <h2>Gracias</h2>
-          <p class="lead">Nos encargaremos de revisar con detalle todo lo que nos escribiste</p>
+          <p class="lead">Vamos a leer con atención todo lo que compartiste.</p>
 
           <div class="endnote">
-            Antes de terminar, quisiéramos tomarnos el tiempo para decirte que aunque no lo digamos siempre, eres valioso para la empresa. Tú conoces bien Galga y sabes que si no estuvieramos contentos contigo no seguiríamos colaborando juntos. Sabemos que hay cosas por mejorar y estamos trabajando en ello. Gracias por estar aquí, por lo que haces cada día y por confiar en que podemos construir un espacio más humano y más claro.
+            Eres valioso para la empresa. Sabemos que hay cosas por mejorar y estamos trabajando en ello. Gracias por estar aquí, por lo que haces cada día y por confiar en que podemos construir un espacio más humano y más claro.
           </div>
 
-          <div class="q">
-            <label class="prompt">Si quieres respuesta de seguimiento (opcional), deja un correo de contacto:</label>
-            <input type="email" name="correo_contacto" placeholder="tunombre@galga.mx">
-          </div>
-
-          <div class="q">
-            <label class="prompt">¿Autorizas que te contactemos para profundizar (si marcaste algo delicado)?</label>
-            <div class="options">
-              <label class="chip"><input type="radio" name="autorizacion_contacto" value="Sí"><span>✅ Sí</span></label>
-              <label class="chip"><input type="radio" name="autorizacion_contacto" value="Prefiero que no"><span>🚫 Prefiero que no</span></label>
-            </div>
-          </div>
 
           <p class="tiny">Al enviar, aceptas que usemos tus respuestas para identificar acciones internas de mejora. No compartiremos tu información fuera de Galga.</p>
         </section>
@@ -443,44 +417,45 @@
         nextBtn.classList.remove('hidden');
         submitBtn.classList.add('hidden');
       }
-      // Scroll to top of card on step change (mobile friendliness)
       document.querySelector('.card').scrollTo({top:0, behavior:'smooth'});
     }
 
+    function validateCurrentStep(){
+      const current = steps[idx];
+      // Required fields inside current step
+      const required = current.querySelectorAll('.required, [required]');
+      for (const el of required){
+        const val = (el.value || '').trim();
+        if (val.length < (el.minLength > 0 ? el.minLength : 1)){
+          el.reportValidity ? el.reportValidity() : alert('Por favor escribe una respuesta antes de continuar.');
+          el.focus();
+          return false;
+        }
+      }
+      return true;
+    }
+
     nextBtn.addEventListener('click', ()=>{
-      if (idx < total-1){ idx++; updateUI(); }
+      if (idx < total-1){
+        if(!validateCurrentStep()) return;
+        idx++; updateUI();
+      }
     });
 
     backBtn.addEventListener('click', ()=>{
       if (idx > 0){ idx--; updateUI(); }
     });
 
-    // Toggle "anonymous" hides identity fields
-    const anonRadios = document.querySelectorAll('input[name="anonimo"]');
-    const identBlocks = document.querySelectorAll('.ident');
-    anonRadios.forEach(r=>{
-      r.addEventListener('change', ()=>{
-        const isAnon = (document.querySelector('input[name="anonimo"]:checked')?.value === 'Sí');
-        identBlocks.forEach(el=>{
-          el.classList.toggle('hidden', isAnon);
-          const input = el.querySelector('input');
-          if(input){ input.value = isAnon ? '' : input.value; }
-        });
-      });
-    });
-
-    // Make chips clickable (toggle for checkboxes; exclusive for radios)
+    // Chips UX (checkbox/radio)
     const chips = document.querySelectorAll('.chip');
     chips.forEach(chip=>{
       chip.addEventListener('click', (e)=>{
         const input = chip.querySelector('input');
         if(!input) return;
-
         if(input.type === 'checkbox'){
           input.checked = !input.checked;
           chip.classList.toggle('active', input.checked);
         }else if(input.type === 'radio'){
-          // clear siblings in same group
           const group = input.name;
           document.querySelectorAll(`input[name="${group}"]`).forEach(r=>{
             r.closest('.chip')?.classList.remove('active');
@@ -492,16 +467,22 @@
       });
     });
 
-    // Initialize UI
-    updateUI();
-
-    // Prevent accidental submit with Enter except on final step
+    // Prevent Enter from skipping validation mid-flow
     document.addEventListener('keydown', (e)=>{
       if(e.key === 'Enter' && idx < total-1){
         e.preventDefault();
         nextBtn.click();
       }
     });
+
+    // Final submit: basic guard
+    document.querySelector('form').addEventListener('submit', (e)=>{
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando…';
+    });
+
+    // Init
+    updateUI();
   </script>
 </body>
 </html>
