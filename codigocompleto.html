@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title> ¡Arriba el equipo de ventas! </title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #0b0f1a;
+      --panel: #111629ee;
+      --panel-2: #0d1222cc;
+      --txt: #e9eefb;
+      --muted: #b9c3e6;
+      --brand: #7aa2ff;
+      --brand-2: #7bffd4;
+      --accent: #ffd37b;
+      --ok: #7bff9b;
+      --err: #ff7b9b;
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.04);
+      --glass: backdrop-filter: blur(10px) saturate(115%);
+    }
+
+    html,body{
+      height: 100%;
+      margin: 0;
+      color: var(--txt);
+      background:
+        radial-gradient(1200px 900px at 10% -10%, #14203e 0%, rgba(20,32,62,0) 60%),
+        radial-gradient(1000px 700px at 90% 20%, #0f2740 0%, rgba(15,39,64,0) 55%),
+        linear-gradient(180deg, #0b0f1a 0%, #0a0e19 60%, #090d18 100%);
+      font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .wrap{
+      min-height: 100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 32px 16px;
+    }
+
+    .card{
+      width: 100%;
+      max-width: 760px;
+      background: linear-gradient(180deg, var(--panel), var(--panel-2));
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      padding: 18px 22px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      background: linear-gradient(90deg, rgba(122,162,255,.08), rgba(123,255,212,.06));
+    }
+
+    .logo{
+      width: 140px;
+      height: 36px;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,.4));
+    }
+
+    .title{
+      margin-left:auto;
+      font-weight: 600;
+      letter-spacing:.2px;
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    .progress{
+      height: 6px;
+      background: rgba(255,255,255,.06);
+      width: 100%;
+      position: relative;
+    }
+    .bar{
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--brand), var(--brand-2));
+      transition: width .45s cubic-bezier(.22,1,.36,1);
+    }
+
+    .body{
+      padding: 28px 22px 18px;
+    }
+
+    .step{
+      display: none;
+      animation: fadeIn .35s ease;
+    }
+    .step.active{ display: block; }
+    @keyframes fadeIn{
+      from{ opacity:0; transform: translateY(6px); }
+      to{ opacity:1; transform: translateY(0); }
+    }
+
+    h2{
+      margin: 4px 0 12px;
+      font-size: clamp(20px, 3.6vw, 28px);
+      line-height: 1.2;
+    }
+    p.lead{
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .q{
+      display: grid;
+      gap: 10px;
+      margin: 12px 0 8px;
+    }
+
+    label.prompt{
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea,
+    select{
+      width: 100%;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      color: var(--txt);
+      border-radius: 12px;
+      padding: 12px 14px;
+      outline: none;
+      transition: border .2s, box-shadow .2s, background .2s;
+    }
+    textarea{ min-height: 120px; resize: vertical; }
+    input::placeholder, textarea::placeholder{ color: #93a1c3; }
+
+    input:focus, textarea:focus, select:focus{
+      border-color: rgba(122,162,255,.6);
+      box-shadow: 0 0 0 4px rgba(122,162,255,.15);
+      background: rgba(255,255,255,.08);
+    }
+
+    .options{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    .chip{
+      user-select:none;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      padding:12px 14px;
+      border-radius:12px;
+      cursor:pointer;
+      transition: transform .08s ease, border .2s, background .2s, box-shadow .2s;
+    }
+    .chip:hover{ transform: translateY(-1px); background: rgba(255,255,255,.08);}
+    .chip input{ display:none; }
+    .chip.active{
+      border-color: rgba(123,255,212,.6);
+      box-shadow: 0 0 0 4px rgba(123,255,212,.12);
+      background: rgba(123,255,212,.08);
+    }
+
+    .footer{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      padding: 18px 22px 22px;
+      border-top: 1px solid rgba(255,255,255,.06);
+      background: linear-gradient(90deg, rgba(123,255,212,.06), rgba(122,162,255,.08));
+    }
+
+    .btn{
+      appearance: none;
+      border: none;
+      background: linear-gradient(90deg, var(--brand), var(--brand-2));
+      color: #07111f;
+      font-weight: 700;
+      padding: 12px 16px;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 6px 16px rgba(30, 80, 200, .35);
+      transition: transform .06s ease, box-shadow .2s ease, filter .2s;
+    }
+    .btn:hover{ filter: brightness(1.04); box-shadow: 0 8px 20px rgba(30, 120, 160, .45); }
+    .btn:active{ transform: translateY(1px); }
+    .btn.secondary{
+      background: transparent;
+      color: var(--txt);
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: none;
+    }
+    .tiny{
+      font-size: 12px; color: var(--muted);
+    }
+
+    .pill{
+      display:inline-flex; align-items:center; gap:6px;
+      font-size:12px; padding:6px 10px; border-radius:999px;
+      background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12);
+      color:var(--muted);
+    }
+
+    .endnote{
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.12);
+      padding:14px; border-radius:12px; font-size:14px; color:var(--muted);
+    }
+
+    .align-end{ display:flex; gap:8px; align-items:center; }
+    .spacer{ flex:1; }
+
+    .hidden{ display:none !important; }
+
+    /* Small screens */
+    @media (max-width:560px){
+      .options{ grid-template-columns: 1fr; }
+      .logo{ width: 120px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <form class="card" method="POST" action="https://formsubmit.co/TU_CORREO@galga.mx">
+      <!-- FormSubmit helpers -->
+      <input type="hidden" name="_subject" value="Nueva respuesta — Escucha Comercial Galga">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="text" name="_honey" class="hidden" autocomplete="off">
+
+      <div class="header">
+        <img class="logo" src="https://cdn.shopify.com/s/files/1/0602/9348/0563/files/logo_blanco_web.png?v=1758567562" alt="Galga" />
+        <span class="pill">Encuesta anónima (si tú decides)</span>
+        <div class="title">¡Arriba el equipo de ventas!</div>
+      </div>
+
+      <div class="progress"><div class="bar" id="bar"></div></div>
+
+      <div class="body">
+        <!-- STEP 0: Intro / Identidad -->
+        <section class="step active" data-step="0">
+          <h2>Queremos escucharte</h2>
+          <p class="lead">Este espacio es tuyo. queremos saber qué te motiva, qué te frustra y qué podríamos hacer mejor como equipo.</p>
+
+          <div class="q">
+            <label class="prompt">¿Quieres responder de forma anónima?</label>
+            <div class="options">
+              <label class="chip"><input type="radio" name="anonimo" value="Sí" required><span>🙈 Sí, anónimo</span></label>
+              <label class="chip"><input type="radio" name="anonimo" value="No"><span>👤 No, puedo dejar mis datos</span></label>
+            </div>
+          </div>
+
+          <div class="q ident">
+            <label class="prompt">Tu nombre (opcional)</label>
+            <input type="text" name="nombre" placeholder="Escribe tu nombre o déjalo vacío">
+          </div>
+
+          <div class="q ident">
+            <label class="prompt">Sucursal / Zona (opcional)</label>
+            <input type="text" name="sucursal" placeholder="Ej. León, CDMX, Monterrey, Online">
+          </div>
+
+          <p class="tiny">Tus respuestas llegarán directo a la dirección interna de Galga para seguimiento</p>
+        </section>
+
+        <!-- STEP 1 -->
+        <section class="step" data-step="1">
+          <h2>Empecemos</h2>
+          <p class="lead">Primero que todo, gracias por tomarte el tiempo de tomar el cuestionario. ¿Qué te parece si empezamos con que nos cuentes algo que <b>te haya salido bien</b> últimamente.</p>
+          <div class="q">
+            <label class="prompt">¿Qué hiciste en el trabajo que te dejó buen sabor de boca?</label>
+            <textarea name="logro_reciente" placeholder="Una conversación, un seguimiento, una idea, un detalle con un cliente…"></textarea>
+          </div>
+        </section>
+
+        <!-- STEP 2 -->
+        <section class="step" data-step="2">
+          <h2>Cuando el día se complica…</h2>
+          <p class="lead">Todos tenemos momentos que drenan. Queremos entender los tuyos.</p>
+          <div class="q">
+            <label class="prompt">¿Qué te ha estado <b>drenando energía</b> últimamente?</label>
+            <textarea name="drenadores" placeholder="Describe situaciones o patrones. Sé tan concreto como quieras."></textarea>
+          </div>
+          <div class="q">
+            <label class="prompt">Cuéntanos una situación que te pesó recientemente. ¿Qué pasó y qué necesitabas en ese momento?</label>
+            <textarea name="situacion_peso" placeholder="Aquí caben desde procesos, tiempos, personas, hasta expectativas…"></textarea>
+          </div>
+        </section>
+
+        <!-- STEP 3 -->
+        <section class="step" data-step="3">
+          <h2>Apoyo y límites sanos</h2>
+          <p class="lead">Pedir apoyo no es debilidad; poner límites tampoco.</p>
+          <div class="q">
+            <label class="prompt">¿De quién necesitas más apoyo (rol o área) y en qué momentos?</label>
+            <textarea name="apoyos_necesarios" placeholder="Ej. durante entregas, en cotizaciones urgentes, al escalar temas, etc."></textarea>
+          </div>
+          <div class="q">
+            <label class="prompt">¿Qué límite o acuerdo te ayudaría a proteger tu energía en el día a día?</label>
+            <textarea name="limites_sanos" placeholder="Reuniones, horarios, tiempos de respuesta, foco, claridad de prioridades…"></textarea>
+          </div>
+        </section>
+
+        <!-- STEP 4 -->
+        <section class="step" data-step="4">
+          <h2>Micro-mejoras con gran impacto</h2>
+          <p class="lead">No hablamos de “soluciones mágicas”, sino de ajustes que sí están a nuestro alcance.</p>
+          <div class="q">
+            <label class="prompt">Si mañana pudiéramos cambiar <b>una mini-regla</b> o <b>un hábito</b>, ¿cuál sería?</label>
+            <textarea name="mini_regla" placeholder="Algo pequeño que haría tu jornada 10% más ligera."></textarea>
+          </div>
+          <div class="q">
+            <label class="prompt">¿Qué te daría <b>un 10% más de ánimo</b> para empezar el día?</label>
+            <textarea name="anio_10" placeholder="Rituales de arranque, comunicación, herramientas, reconocimientos…"></textarea>
+          </div>
+        </section>
+
+        <!-- STEP 5 -->
+        <section class="step" data-step="5">
+          <h2>Reconocimiento</h2>
+          <p class="lead">Celebrar bien también es productividad.</p>
+          <div class="q">
+            <label class="prompt">¿Cómo te gusta que reconozcan tu trabajo?</label>
+            <div class="options">
+              <label class="chip"><input type="checkbox" name="reconocimiento_pref[]" value="Privado"><span>🤫 Privado</span></label>
+              <label class="chip"><input type="checkbox" name="reconocimiento_pref[]" value="En equipo"><span>👥 En equipo</span></label>
+              <label class="chip"><input type="checkbox" name="reconocimiento_pref[]" value="Con mensajes escritos"><span>✍️ Mensajes escritos</span></label>
+              <label class="chip"><input type="checkbox" name="reconocimiento_pref[]" value="Con tiempo libre simbólico"><span>⏱️ Tiempo simbólico</span></label>
+              <label class="chip"><input type="checkbox" name="reconocimiento_pref[]" value="Con oportunidades de crecimiento"><span>📈 Oportunidades</span></label>
+              <label class="chip"><input type="checkbox" name="reconocimiento_pref[]" value="Otro"><span>✨ Otro</span></label>
+            </div>
+          </div>
+          <div class="q">
+            <label class="prompt">Cuando haces bien tu trabajo, ¿qué parte del proceso te da esa sensación de “valió la pena”?</label>
+            <textarea name="sentido_proposito" placeholder="Describe el momento: una respuesta, un avance, un cliente bien atendido, un aprendizaje…"></textarea>
+          </div>
+        </section>
+
+        <!-- STEP 6 -->
+        <section class="step" data-step="6">
+          <h2>Presiones y expectativas</h2>
+          <p class="lead">Queremos claridad para poder acompañarte mejor.</p>
+          <div class="q">
+            <label class="prompt">¿Sientes presiones o exigencias de alguna persona o área en particular? ¿Cómo se manifiestan?</label>
+            <textarea name="presiones" placeholder="Describe situaciones, no ataques personales. Lo usaremos para poner orden y acuerdos."></textarea>
+          </div>
+          <div class="q">
+            <label class="prompt">¿Qué crees que se está esperando de ti hoy que no está claro todavía?</label>
+            <textarea name="expectativas_no_claras" placeholder="Metas borrosas, prioridades encontradas, reglas no escritas…"></textarea>
+          </div>
+        </section>
+
+        <!-- STEP 7 -->
+        <section class="step" data-step="7">
+          <h2>Ideas y voz</h2>
+          <p class="lead">Hay cosas que quizá nadie ha preguntado. Este es el espacio.</p>
+          <div class="q">
+            <label class="prompt">¿Qué propuesta traerías a la mesa si supieras que será escuchada con seriedad?</label>
+            <textarea name="propuesta_valiente" placeholder="Proceso, comunicación, rituales, herramientas, coordinación entre áreas…"></textarea>
+          </div>
+          <div class="q">
+            <label class="prompt">¿Hay algo que quieras decir y que no haya salido en las preguntas anteriores?</label>
+            <textarea name="catarsis_libre" placeholder="Lo que necesites expresar. Aquí va."></textarea>
+          </div>
+        </section>
+
+        <!-- STEP 8: Cierre -->
+        <section class="step" data-step="8">
+          <h2>Gracias</h2>
+          <p class="lead">Nos encargaremos de revisar con detalle todo lo que nos escribiste</p>
+
+          <div class="endnote">
+            Antes de terminar, quisiéramos tomarnos el tiempo para decirte que aunque no lo digamos siempre, eres valioso para la empresa. Tú conoces bien Galga y sabes que si no estuvieramos contentos contigo no seguiríamos colaborando juntos. Sabemos que hay cosas por mejorar y estamos trabajando en ello. Gracias por estar aquí, por lo que haces cada día y por confiar en que podemos construir un espacio más humano y más claro.
+          </div>
+
+          <div class="q">
+            <label class="prompt">Si quieres respuesta de seguimiento (opcional), deja un correo de contacto:</label>
+            <input type="email" name="correo_contacto" placeholder="tunombre@galga.mx">
+          </div>
+
+          <div class="q">
+            <label class="prompt">¿Autorizas que te contactemos para profundizar (si marcaste algo delicado)?</label>
+            <div class="options">
+              <label class="chip"><input type="radio" name="autorizacion_contacto" value="Sí"><span>✅ Sí</span></label>
+              <label class="chip"><input type="radio" name="autorizacion_contacto" value="Prefiero que no"><span>🚫 Prefiero que no</span></label>
+            </div>
+          </div>
+
+          <p class="tiny">Al enviar, aceptas que usemos tus respuestas para identificar acciones internas de mejora. No compartiremos tu información fuera de Galga.</p>
+        </section>
+
+      </div><!-- /body -->
+
+      <div class="footer">
+        <button type="button" class="btn secondary" id="back">← Anterior</button>
+        <div class="spacer"></div>
+        <span class="tiny" id="counter">1 / 9</span>
+        <button type="button" class="btn" id="next">Siguiente →</button>
+        <button type="submit" class="btn hidden" id="submit">Enviar respuestas</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // --- UI helpers ---
+    const steps = [...document.querySelectorAll('.step')];
+    const nextBtn = document.getElementById('next');
+    const backBtn = document.getElementById('back');
+    const submitBtn = document.getElementById('submit');
+    const bar = document.getElementById('bar');
+    const counter = document.getElementById('counter');
+
+    let idx = 0;
+    const total = steps.length;
+
+    function updateUI(){
+      steps.forEach((s,i)=> s.classList.toggle('active', i===idx));
+      const pct = ((idx+1) / total) * 100;
+      bar.style.width = pct + '%';
+      counter.textContent = (idx+1) + ' / ' + total;
+      backBtn.disabled = idx===0;
+      backBtn.style.opacity = idx===0 ? .5 : 1;
+      if(idx === total-1){
+        nextBtn.classList.add('hidden');
+        submitBtn.classList.remove('hidden');
+      }else{
+        nextBtn.classList.remove('hidden');
+        submitBtn.classList.add('hidden');
+      }
+      // Scroll to top of card on step change (mobile friendliness)
+      document.querySelector('.card').scrollTo({top:0, behavior:'smooth'});
+    }
+
+    nextBtn.addEventListener('click', ()=>{
+      if (idx < total-1){ idx++; updateUI(); }
+    });
+
+    backBtn.addEventListener('click', ()=>{
+      if (idx > 0){ idx--; updateUI(); }
+    });
+
+    // Toggle "anonymous" hides identity fields
+    const anonRadios = document.querySelectorAll('input[name="anonimo"]');
+    const identBlocks = document.querySelectorAll('.ident');
+    anonRadios.forEach(r=>{
+      r.addEventListener('change', ()=>{
+        const isAnon = (document.querySelector('input[name="anonimo"]:checked')?.value === 'Sí');
+        identBlocks.forEach(el=>{
+          el.classList.toggle('hidden', isAnon);
+          const input = el.querySelector('input');
+          if(input){ input.value = isAnon ? '' : input.value; }
+        });
+      });
+    });
+
+    // Make chips clickable (toggle for checkboxes; exclusive for radios)
+    const chips = document.querySelectorAll('.chip');
+    chips.forEach(chip=>{
+      chip.addEventListener('click', (e)=>{
+        const input = chip.querySelector('input');
+        if(!input) return;
+
+        if(input.type === 'checkbox'){
+          input.checked = !input.checked;
+          chip.classList.toggle('active', input.checked);
+        }else if(input.type === 'radio'){
+          // clear siblings in same group
+          const group = input.name;
+          document.querySelectorAll(`input[name="${group}"]`).forEach(r=>{
+            r.closest('.chip')?.classList.remove('active');
+          });
+          input.checked = true;
+          chip.classList.add('active');
+        }
+        e.preventDefault();
+      });
+    });
+
+    // Initialize UI
+    updateUI();
+
+    // Prevent accidental submit with Enter except on final step
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter' && idx < total-1){
+        e.preventDefault();
+        nextBtn.click();
+      }
+    });
+  </script>
+</body>
+</html>
